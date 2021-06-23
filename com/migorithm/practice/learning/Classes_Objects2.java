@@ -6,6 +6,8 @@ public class Classes_Objects2 {
         Toy Dog = new Toy("DoggyDoggy",100000);
         Alex.toy = Dog;
         Alex.toy.intro();
+
+
     }
     static class Person{
         String name;
