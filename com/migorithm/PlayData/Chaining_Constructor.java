@@ -7,7 +7,7 @@ public class Chaining_Constructor {
 
         long start = System.nanoTime();
 
-        Test02 first = new Test02();
+        Test first = new Test();
 
         long elapsedTime = System.nanoTime()-start;
 
