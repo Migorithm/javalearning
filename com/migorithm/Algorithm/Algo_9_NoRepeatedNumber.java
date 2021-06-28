@@ -9,9 +9,7 @@ public class Algo_9_NoRepeatedNumber {
         int[] arr = A.solution(new int []{1,2,3,44,4,4,4,2,3,4});
         System.out.println(Arrays.toString(arr));
     }
-
     public int[] solution(int []arr) {
-
         ArrayList<Integer> aa = new ArrayList<Integer>();
         for(int i =0; i < arr.length ; i++){
             if(i-1 >=0 && arr[i] != arr[i-1]){
@@ -24,9 +22,6 @@ public class Algo_9_NoRepeatedNumber {
         for (int i =0; i<aa.size(); i++){
             answer[i] = aa.get(i);
         }
-
-
-
         return answer;
     }
 }
