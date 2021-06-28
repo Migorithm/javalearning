@@ -11,6 +11,7 @@ public class Algo_8_countString {
         boolean answer = true;
         long countP = s.toLowerCase().chars().filter(ch -> ch =='p').count();
         long countY = s.toLowerCase().chars().filter(ch -> ch =='p').count();
+
         if (countP != countY){answer = false;}
 
         return answer;
