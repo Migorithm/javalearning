@@ -1,4 +1,4 @@
-package com.migorithm.PlayData.Inheritance;
+package com.migorithm.PlayData;
 
 import java.util.Scanner;
 /*문제 str을 받은 cnvr을 조작해보자.
