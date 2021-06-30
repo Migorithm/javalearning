@@ -33,6 +33,8 @@ public class Object_file {
         ArrayList info2 = p2.info();
         info1.forEach(System.out::println);
         info2.forEach(System.out::println);
+        obj.close();
+
 
     }
 
