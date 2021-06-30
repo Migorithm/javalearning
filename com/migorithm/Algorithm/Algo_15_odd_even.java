@@ -8,7 +8,7 @@ public class Algo_15_odd_even {
     }
 
     public String solution(int num) {
-        if (num%2 ==1){
+        if (num%2 ==1 || num%2 == -1){ //you must think about the case when the range of int goes below 0. i.e, negative.
             return "Odd";
         }
         else {return "Even";}
