@@ -10,6 +10,7 @@ public class ShapeTest {
         sm[4] = new Triangle(9,8,"White");
         sm[5] = new Rectangle(5,7,"White");
 
+
         System.out.println("기본정보");
         System.out.println();
         String shapeType = null;
