@@ -27,26 +27,20 @@ public class ShapeTest02 {
                 System.out.println(shapeType + "\t" + s.getArea() + "\t" + s.getColors());;
             }
         });
-
-
         System.out.println();
         System.out.println("사이즈 변경 후 정보");
         System.out.println();
 
-        for (int i=0; i<sm.size();i++) {
-            Shape s = (Shape) sm.get(i);
-            if(s instanceof Triangle) {
-                String shapeType = "Triangle";
-                ((Triangle)s).setResize(5);
-                System.out.println(shapeType + "\t" + s.getArea() + "\t" + s.getColors());
-            }
-            if(s instanceof Rectangle) {
-                String shapeType = "Rectangle";
-                ((Rectangle)s).setResize(5);
-                System.out.println(shapeType + "\t" + s.getArea() + "\t" + s.getColors());
-            }
-
-        }
-
+        sm.forEach(x -> { String shapetype = null;
+                    if (x instanceof Triangle) {
+                        ((Triangle)x).setResize(5);
+                        System.out.println(shapetype + "\t" + x.getArea() + "\t" + x.getColors());
+                    }
+                    if (x instanceof Rectangle) {
+                        ((Rectangle)x).setResize(5);
+                        System.out.println(shapetype + "\t" + x.getArea() + "\t" + x.getColors());
+                    }
+                }
+         );
     }
 }
