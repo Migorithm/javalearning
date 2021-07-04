@@ -30,9 +30,9 @@ public class ServerWorker extends Thread{
         OutputStream outputStream = clientSocket.getOutputStream(); //to get data from client.
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        String line;
+        String line; //container to get user input.
         while((line=reader.readLine())!= null){
-            if ("quit".equalsIgnoreCase(line)) {
+            if ("quit".equalsIgnoreCase(line)) {//to check whether the line is the same as "quit" regardless of capital or minor.
                 break;
             }
             String msg = "You typed :" + line + "\n";
