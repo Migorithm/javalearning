@@ -103,6 +103,8 @@ public class ClientThread extends Thread {
     public String getLogin(){
         return login;
     }
+
+
     private void handleLogin(OutputStream outputStream, String[] tokens) throws IOException {
         if (tokens.length == 3) {
             String login = tokens[1];
@@ -113,7 +115,7 @@ public class ClientThread extends Thread {
                 this.login = login;
                 System.out.println("User logged in successfully: " + login);
                 List<ClientThread> workerList = server.getWorkerList();
-                //send current user al other onlin logins
+                //send current user all other online logins
                 for (ClientThread worker : workerList){
                     if(worker.getLogin() != null) {
                         if (!login.equals(worker.getLogin())) {

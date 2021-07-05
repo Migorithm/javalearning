@@ -9,11 +9,19 @@ import java.util.List;
 public class Server extends Thread {
     private final int serverport;
     private ArrayList<ClientThread> workerList = new ArrayList<>();
+
+
+    //Constructor
     public Server(int serverPort) {
         this.serverport = serverPort;
     }
-    public List<ClientThread> getWorkerList(){  //getter for workerlist  =  lists of threads
+
+
+    //List of workers(Threads)
+    public List<ClientThread> getWorkerList(){
         return workerList;
+
+
     }
     @Override
     public void run() {
@@ -23,12 +31,14 @@ public class Server extends Thread {
                 System.out.println("About to accept client connection...");
                 Socket clientSocket = serverSocket.accept();
                 // this is one that actually creates connection between server and the client. no connection -> blocked
+
                 System.out.println("Accepted connection from "+clientSocket);
                 //-> this will return client port and server port
                 ClientThread worker = new ClientThread(this,clientSocket);
                 workerList.add(worker);
                 worker.start();
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
