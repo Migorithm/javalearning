@@ -1,8 +1,7 @@
-package ChatServer.src.com.muc;
+package com.sev;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Date;
 
 public class ServerWorker extends Thread{
 

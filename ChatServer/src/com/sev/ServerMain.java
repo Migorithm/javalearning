@@ -1,4 +1,4 @@
-package ChatServer.src.com.muc;
+package com.sev;
 
 import java.io.IOException;
 import java.net.ServerSocket;

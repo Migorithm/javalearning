@@ -1,4 +1,4 @@
-package ChatServer.src.com.muc;
+package com.sev;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Server extends Thread {
     private final int serverport;
-    private ArrayList<ClientThread> workerList = new ArrayList<>();
+    private ArrayList<ClientThread> workerList = new ArrayList<>(); //empty list
 
     public Server(int serverPort) {
         this.serverport = serverPort;
@@ -29,8 +29,8 @@ public class Server extends Thread {
                 // this is one that actually creates connection between server and the client. no connection -> blocked
                 System.out.println("Accepted connection from "+clientSocket);
                 //-> this will return client port and server port
-                ClientThread worker = new ClientThread(this,clientSocket);
-                workerList.add(worker);
+                ClientThread worker = new ClientThread(this,clientSocket); // why server as a parameter? to let other thread know how many workers are out there.
+                workerList.add(worker); // add workers(threads) to empty list
 
                 worker.start();
             }

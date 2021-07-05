@@ -1,10 +1,9 @@
-package ChatServer.src.com.muc;
+package com.sev;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class ClientThread extends Thread {
@@ -37,7 +36,7 @@ public class ClientThread extends Thread {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line; //container to get user input.
         while ((line = reader.readLine()) != null) {
-            String[] tokens = StringUtils.split(line);
+            String[] tokens = StringUtils.split(line); // line.split(" ")
 
             if (tokens != null && tokens.length > 0) { //to make sure those token doesn't cause any no pointer exception.
                 String cmd = tokens[0]; // first token is going to be our command.
@@ -75,7 +74,7 @@ public class ClientThread extends Thread {
     }
 
     private void handleLogin(OutputStream outputStream, String[] tokens) throws IOException {
-        System.out.println("Dd");
+
         if (tokens.length == 3) {
             String login = tokens[1];
             String password = tokens[2];
