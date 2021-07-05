@@ -1,10 +1,8 @@
-package ChatServer.src.com.muc;
+package com.chat;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-
 /*
 Created by Migo on 01/07/2021
  */
