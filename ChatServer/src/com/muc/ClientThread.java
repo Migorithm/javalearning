@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
 import java.util.List;
 
 public class ClientThread extends Thread {
@@ -13,6 +14,8 @@ public class ClientThread extends Thread {
     private final Server server;
     private String login = null;
     private OutputStream outputStream;
+    private HashSet<String> topicSet  = new HashSet<>(); //to store membership of users to a topic
+
 
     public ClientThread(Server server, Socket clientSocket) {
         this.server = server;
@@ -46,8 +49,16 @@ public class ClientThread extends Thread {
                     handleLogoff();
                     break;
                 } else if ("login".equalsIgnoreCase(cmd)) {
+
                     handleLogin(outputStream, tokens);
-                } else {
+                } else if ("msg".equalsIgnoreCase(cmd)){
+                    String[] tokenMsg = StringUtils.split(line,null,3);
+                    handleMessage(tokenMsg);
+                } else if ("join".equalsIgnoreCase(cmd)){
+                    handleJoin(tokens);
+                }
+
+                else {
                     String msg = "unknown " + cmd + "\n";
                     //if we don't recognize that command, give error back to client.
                     outputStream.write(msg.getBytes());
@@ -57,7 +68,50 @@ public class ClientThread extends Thread {
         clientSocket.close();
     }
 
+    public boolean isMemberOfTopic (String topic){
+        return topicSet.contains(topic);
+    }
+
+    private void handleJoin(String[] tokens) {
+        if (tokens.length>1){
+            String topic = tokens[1]; //topic is a second token
+            topicSet.add(topic); //this connection is a part of this topic -> require testing
+
+        }
+    }
+
+    //format : "msg" "login" body...
+    //format : "msg" "#topic body...
+    private void handleMessage(String[] tokens) throws IOException {
+        String sendTo = tokens[1];
+        String body = tokens[2];
+
+        boolean isTopic = sendTo.charAt(0)=='#';
+
+        List<ClientThread> workerList = server.getWorkerList();
+        for(ClientThread worker : workerList){
+            //if the worker login matches the sendTo , then we'll send the message to that particular worker.
+            if (isTopic){
+                if (worker.isMemberOfTopic(sendTo)){
+                    String outMsg = login + " send a message to "+  sendTo + ": " + body + "\n";
+                    worker.send(outMsg);
+                }
+            }
+
+            else {
+                if(sendTo.equalsIgnoreCase(worker.getLogin())){
+                String outMsg =  login + " send a message : " + body + "\n";
+                worker.send(outMsg);
+            }}
+
+        }
+
+    }
+
     private void handleLogoff() throws IOException {
+        //when user logs off, we need to remove current instance.
+        server.removeWorker(this);
+
         List<ClientThread> workerList = server.getWorkerList();
 
         //send other lone users current user's status
@@ -75,7 +129,7 @@ public class ClientThread extends Thread {
     }
 
     private void handleLogin(OutputStream outputStream, String[] tokens) throws IOException {
-        System.out.println("Dd");
+
         if (tokens.length == 3) {
             String login = tokens[1];
             String password = tokens[2];

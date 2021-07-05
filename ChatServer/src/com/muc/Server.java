@@ -26,9 +26,11 @@ public class Server extends Thread {
             while(true) {     //as you are to continuosly accpept client- > while(true)
                 System.out.println("About to accept client connection...");
                 Socket clientSocket = serverSocket.accept();
+
                 // this is one that actually creates connection between server and the client. no connection -> blocked
                 System.out.println("Accepted connection from "+clientSocket);
                 //-> this will return client port and server port
+
                 ClientThread worker = new ClientThread(this,clientSocket);
                 workerList.add(worker);
 
@@ -37,5 +39,9 @@ public class Server extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void removeWorker(ClientThread clientThread) {
+        workerList.remove(clientThread);
     }
 }
