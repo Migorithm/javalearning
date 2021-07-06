@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Server extends Thread {
     private final int serverport;
-    private ArrayList<ClientThread> workerList = new ArrayList<>();
+    private ArrayList<ClientThread> workerList = new ArrayList<>(); // threads
 
 
     //Constructor

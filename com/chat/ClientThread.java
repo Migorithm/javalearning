@@ -12,9 +12,12 @@ public class ClientThread extends Thread {
     private String login = null;
     private OutputStream outputStream;
     private HashSet<String> topicSet  = new HashSet<>(); //to store membership of users to a topic
+
+
     public ClientThread(Server server, Socket clientSocket) {
         this.server = server;
         this.clientSocket = clientSocket;
+
     }
     @Override
     public void run() {
@@ -26,12 +29,16 @@ public class ClientThread extends Thread {
             e.printStackTrace();
         }
     }
+
+
     private void handleClientSocket() throws IOException, InterruptedException {
+
         InputStream inputStream = clientSocket.getInputStream();//to get access to input stream to read data
         this.outputStream = clientSocket.getOutputStream(); //to get data from client.
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line; //container to get user input.
-        while ((line = reader.readLine()) != null) {
+        while ((line = reader.readLine()) != null) { //UI    login(cmd) id password
             String[] tokens = StringUtils.split(line);
             if (tokens != null && tokens.length > 0) { //to make sure those token doesn't cause any no pointer exception.
                 String cmd = tokens[0]; // first token is going to be our command.
@@ -109,6 +116,8 @@ public class ClientThread extends Thread {
         if (tokens.length == 3) {
             String login = tokens[1];
             String password = tokens[2];
+
+            //DB연동, 아이디, 패스워드 검증
             if ((login.equals("guest") && password.equals("guest")) || (login.equals("jim") && password.equals("jim"))) {
                 String msg = "Ok login\n";
                 outputStream.write(msg.getBytes());

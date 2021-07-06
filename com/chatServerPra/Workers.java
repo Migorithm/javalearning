@@ -45,8 +45,18 @@ public class Workers extends Thread {
                     handleLogoff();
                     break;
                 }
+                else if (cmd.equalsIgnoreCase("msg")){
+                    String[] tokenMsg = line.split(" ",3);
+                    handleMessage(tokenMsg);
+
+                }
             }
         }
+    }
+
+    private void handleMessage(String[] tokenMsg) {
+        String sendTo = tokenMsg[1];
+
     }
 
 
