@@ -85,12 +85,14 @@ public class ClientThread extends Thread {
                 if (worker.isMemberOfTopic(sendTo)){
                     String outMsg = login + " send a message to "+  sendTo + ": " + body + "\n";
                     worker.send(outMsg);
+                    System.out.println(outMsg);
                 }
             }
             else {
                 if(sendTo.equalsIgnoreCase(worker.getLogin())){
                     String outMsg =  login + " send a message : " + body + "\n";
                     worker.send(outMsg);
+                    System.out.println(outMsg); // to get
                 }}
         }
     }

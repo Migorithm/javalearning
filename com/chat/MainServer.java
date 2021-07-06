@@ -14,3 +14,6 @@ public class MainServer {
         server.start(); //main server
     }
 }
+
+//파일 저장, 내용 저장
+//자바 채팅 서버 .exe 만들기
