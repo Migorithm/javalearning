@@ -34,11 +34,9 @@ public class ClientThread extends Thread {
 
 
     private void handleClientSocket() throws IOException, InterruptedException {
-
         InputStream inputStream = clientSocket.getInputStream();//to get access to input stream to read data
         this.outputStream = clientSocket.getOutputStream(); //to get data from client.
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
 
         String line; //container to get user input.
         while ((line = reader.readLine()) != null) { //UI    login(cmd) id password
