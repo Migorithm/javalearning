@@ -40,9 +40,11 @@ public class JDBCTemplate { //시뮬레이션  - > DB   -> VO , ENTITY
         Connection con=null;
 
         try {
+
             Class.forName("oracle.jdbc.driver.OracleDriver"); //클래스 참조형 실행상태.
             //  object의 get의 return값.
             // "oracle.jdbc.driver.OracleDriver".class
+
 
 
             con = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:XE","migo","admin1234");
