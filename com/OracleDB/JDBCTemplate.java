@@ -47,12 +47,12 @@ public class JDBCTemplate { //시뮬레이션  - > DB   -> VO , ENTITY
 
 
 
-            con = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:XE","migo","admin1234");
+            con = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:XE","MIGO","admin1234");
             //Connection = 연결 객체. commit /rollback/ close() / isClosed() 등을가진다.
 
 
             if(!con.isClosed()) {
-                System.out.println("연결했으");
+                System.out.println("DB연동 성공");
             }
         }catch(ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -116,7 +116,6 @@ public class JDBCTemplate { //시뮬레이션  - > DB   -> VO , ENTITY
                 return true;
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return false;

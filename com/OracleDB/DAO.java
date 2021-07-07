@@ -10,6 +10,7 @@ public class DAO implements DBInterface {
     public static boolean ID_Validation(String[] id_pwd) {
         String id = id_pwd[1].toLowerCase();
         String pwd = id_pwd[2].toLowerCase();
+
         Connection con = getConnection();
         PreparedStatement stmt = null;
         try {
@@ -39,6 +40,7 @@ public class DAO implements DBInterface {
             stmt.setString(2,sendTo);
             stmt.setString(3,body);
             stmt.setString(4, now.toString());
+
             stmt.executeQuery();
             con.commit();
 

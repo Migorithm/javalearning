@@ -1,7 +1,7 @@
 package com.chat;
 
 /*
-Created by Migo on 01/07/2021
+Created by Migo on 07/07/2021
  */
 public class MainServer {
     public static void main(String[] args) {

@@ -1,0 +1,31 @@
+PROTOCOL*
+
+1.ID validation
+
+2.Login/out information
+
+3.msg transmission information
+
+
+--chat_user
+CREATE TABLE CHAT_USER (
+ID VARCHAR2(20) primary key,
+PASSWORD varchar2(40) );
+
+INSERT INTO CHAT_USER VALUES('migo','admin1234');
+INSERT INTO CHAT_USER VALUES('khan','admin1234');
+INSERT INTO CHAT_USER VALUES('encore','admin1234');
+
+commit;
+
+
+
+--user_behavior
+CREATE TABLE USER_BEHAVIOR (
+ID VARCHAR2(20) REFERENCES CHAT_USER(ID),
+msgto VARCHAR2(20),
+contents varchar2 (2000),
+time varchar2(2000),
+);
+
+

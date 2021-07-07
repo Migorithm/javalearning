@@ -48,6 +48,7 @@ public class ClientThread extends Thread {
                     handleLogoff();
                     break;
                 } else if ("login".equalsIgnoreCase(cmd)) {
+                    System.out.println("Validating login....");
                     handleLogin(outputStream, tokens);
                 } else if ("msg".equalsIgnoreCase(cmd)){
                     String[] tokenMsg = StringUtils.split(line,null,3);
@@ -158,6 +159,7 @@ public class ClientThread extends Thread {
             }else {
                 String msg = "Error login\n";
                 outputStream.write(msg.getBytes());
+                System.err.println("Login failed for " + login);
             }
         }
     }
