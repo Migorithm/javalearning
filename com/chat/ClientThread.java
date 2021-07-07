@@ -136,7 +136,7 @@ public class ClientThread extends Thread {
             //DB연동, 아이디, 패스워드 검증
             if (DAO.ID_Validation(tokens)) {
                 String msg = "Ok login\n";
-                outputStream.write(msg.getBytes());
+                outputStream.write(msg.getBytes()); // -> 사용자는 Ok login을 받을 것.
                 this.login = login;
                 System.out.println("User logged in successfully: " + login);
                 List<ClientThread> workerList = server.getWorkerList();
