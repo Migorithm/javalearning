@@ -13,35 +13,26 @@ public class Algo_17_Least_most_common {
     }
 
     public int[] solution(int n, int m) {
-        int[] answer = new int[2];
-        if (m%n ==0){ //when n is aliquot of m
-            answer[0] = n;
-            answer[1] = m;
-            return answer;
-        }
-        else{ // when n is not an aliquot of m
-            ArrayList<Integer> arr = new ArrayList<Integer>();
-            for(int i = 1 ; i <= m ; i++){
-                if (m%i ==0 & n%i ==0){arr.add(i);};
+        int[]answer = new int[2];
+        for (int i= Math.max(m,n); i>0; i--){
+            if(m%i ==0 && n%i==0){
+                answer[0] = i;
+                break;
             }
-            answer[0] = arr.get(arr.size()-1);
-            // 48 x 60 ->  2  // 24 30 - > 2 // 12 , 15 -> 3 // 4 , 5
-            int ans=1;
-            int i = 0;
-            while (i < arr.size()){
-                //divide number by its modulos
-                if (n%(arr.get(i)) ==0 & m%(arr.get(i)) ==0 ){
-                    n =  n/(arr.get(i));
-                    m = m/(arr.get(i));
-                    ans = ans*arr.get(i);}
-                else {
-                    i++;
+        }
+        int answ = 1;
+        for (int i= 2;i<=Math.max(n,m)/2;i++){
+            while (true){
+                if(m%i ==0 && n%i==0){
+                    m /= i;
+                    n /= i;
+                    answ = answ * i;
                 }
+                else{break;}
             }
-            answer[1] = ans*n*m;
-            return answer;
-
         }
-
-
-}}
+        answ= answ*n*m;
+        answer[1] = answ;
+        return answer;
+    }
+}
