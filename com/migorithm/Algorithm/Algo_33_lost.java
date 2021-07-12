@@ -1,36 +1,38 @@
 package com.migorithm.Algorithm;
 
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
+
 
 public class Algo_33_lost {
     public static void main(String[] args) {
         Algo_33_lost A = new Algo_33_lost();
-        System.out.println(A.solution(7, new int[]{1, 2, 3, 7}, new int[]{4, 5, 6})); //5
-
-
+        System.out.println(A.solution(5, new int[]{ 2, 4}, new int[]{3})); //5
     }
-
     public int solution(int n, int[] lost, int[] reserve) {
-        int cnt = 0;
-        for (int i = 0; i < lost.length; i++) {
-            for (int j = 0; j < reserve.length; j++) {
-                if (Math.abs(lost[i] - reserve[j]) == 0) {
-                    reserve[j] = -1;
-                    break;}
-                else if (Math.abs(lost[i] - reserve[j]) == 1) {
-                    reserve[j] = -1;
-                    break;
+        ArrayList<Integer> array = new ArrayList<>();
+        for (int i : lost) {
+            array.add(i);
+        }
+        ArrayList<Integer> array2 = new ArrayList<>();
+        for (int i : reserve) {
+            array2.add(i);
+        }
+        ArrayList<Integer> arr = (ArrayList<Integer>) array.clone(); //cloning for reusing the same elements when removing stuff from array2.
+        array.removeAll(array2);
+        array2.removeAll(arr);
+        System.out.println(array);
+        System.out.println(array2);
+
+        for (int i =0; i <array.size();i++){
+            for(int j =0 ; j <array2.size();j++){
+                if (Math.abs(array.get(i)-array2.get(j)) == 1){
+                    array.set(i,-1);
+                    array2.set(j,-1);
                 }
             }
         }
-        int minus = lost.length ;
-        for (int i : reserve) {
-            if (i ==-1){
-                minus--;
-            }
-        }
-    return n - minus;
-    }
+        Object[] ans = array.stream().filter(x -> x!=-1).toArray();
+    return n-ans.length;
+}
 }
